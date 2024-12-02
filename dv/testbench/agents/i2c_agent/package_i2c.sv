@@ -5,5 +5,5 @@ package i2c_pkg;
     `include "driver_i2c.sv"
     `include "seq_i2c.sv"
     `include "agent_i2c.sv"
-    `include "adapter_i2c.sv"
+    //`include "adapter_i2c.sv"
 endpackage : i2c_pkg

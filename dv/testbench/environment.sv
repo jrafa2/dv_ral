@@ -14,10 +14,6 @@ class environment extends uvm_env;
   clk_agent clk_agt;
   rst_agent rst_agt;
 
-  i2c_adapter adapter;
-//  uvm_reg_predictor#(i2c_basic_tr) predictor;
-  reg_map regmap;
-
   virtual dut_if dut_vif;
 
   function new(string name, uvm_component parent);
@@ -28,28 +24,11 @@ class environment extends uvm_env;
     i2c_agt = i2c_agent::type_id::create("i2c_agt", this);
     clk_agt = clk_agent::type_id::create("clk_agt", this);
     rst_agt = rst_agent::type_id::create("rst_agt", this);
-
-    //regmap = reg_map::type_id::create("ral", this);
-    regmap = new("ral");
-    regmap.build();
-    regmap.default_map.set_auto_predict(0);
-    regmap.lock_model();
-
-    adapter = i2c_adapter::type_id::create("adapter", this, get_full_name());
-
-//        predictor = new("predictor", this);
-//        predictor.map     = regmap.default_map;
-//        predictor.adapter = adapter;
   endfunction
 
   function void connect_phase(uvm_phase phase);
     assert(uvm_config_db#(virtual dut_if)::get(this, "", "dut_if", dut_vif));  
 
-    regmap.default_map.set_sequencer(.sequencer(i2c_agt.m_sequencer), .adapter(adapter));
-    regmap.default_map.set_base_addr('h0);
-
-//        i2c_agt.monitor.port.connect(predictor.bus_in);
-
-    `include "regs/ral_backdoor.sv"
+//    `include "regs/ral_backdoor.sv"
   endfunction
 endclass : environment

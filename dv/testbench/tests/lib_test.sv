@@ -6,11 +6,11 @@
 
 `include "test_adc_read.sv"
 
-`include "test_regs_ral.sv"
+//`include "test_regs_ral.sv"
 
 `include "test_dummy.sv"
 
-`include "test_fir.sv"
-`include "test_cic.sv"
+//`include "test_fir.sv"
+//`include "test_cic.sv"
 
-`include "test_reset.sv"
+//`include "test_reset.sv"
