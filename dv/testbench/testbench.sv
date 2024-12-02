@@ -1,6 +1,6 @@
 import uvm_pkg::*;
 `include "uvm_macros.svh"
-import regs::*;
+//import regs::*;
 
 `include "dut_if.sv"
 `include "lib_test.sv"
